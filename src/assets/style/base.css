@@ -1,0 +1,43 @@
+html,
+body {
+  background-color: #f9fafc;
+}
+
+[v-cloak] {
+  display: none;
+}
+
+.content {
+  margin-top: 46px;
+}
+
+.van-nav-bar {
+  background-color: #232a38;
+}
+
+.van-nav-bar .van-icon,
+.van-nav-bar__title,
+.van-nav-bar__text {
+  color: #fff;
+}
+
+.van-tabbar {
+  height: 80px;
+  box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.van-tabbar-item {
+  color: #989898;
+}
+
+.van-tabbar-item--active {
+  color: #000;
+}
+
+.van-tabbar-item__icon img {
+  width: 18px;
+}
+
+.van-cell {
+  line-height: 30px;
+}
