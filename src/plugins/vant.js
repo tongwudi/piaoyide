@@ -5,8 +5,6 @@ import {
     Tabbar,
     TabbarItem,
     NavBar,
-    Grid,
-    GridItem,
     Cell,
     CellGroup,
     Row,
@@ -34,8 +32,6 @@ Vue.use(Button);
 Vue.use(Tabbar);
 Vue.use(TabbarItem);
 Vue.use(NavBar);
-Vue.use(Grid);
-Vue.use(GridItem);
 Vue.use(Cell);
 Vue.use(CellGroup);
 Vue.use(Row);
