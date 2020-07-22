@@ -21,6 +21,13 @@ import {
     Dialog,
     ImagePreview,
     Icon,
+    Image as VanImage,
+    Divider,
+    Empty,
+    Loading,
+    Overlay,
+    Tab,
+    Tabs
 } from 'vant';
 
 Vue.use(Button);
@@ -43,3 +50,10 @@ Vue.use(Toast);
 Vue.use(Dialog);
 Vue.prototype.$imagePreview = ImagePreview
 Vue.use(Icon);
+Vue.use(VanImage);
+Vue.use(Divider);
+Vue.use(Empty);
+Vue.use(Loading);
+Vue.use(Overlay);
+Vue.use(Tab);
+Vue.use(Tabs);

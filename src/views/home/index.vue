@@ -1,5 +1,5 @@
 <template>
-    <div class="home">
+    <div class="home fixed-box">
         <div class="welcome">Welcome</div>
         <div class="title">票易得</div>
         <div class="pic">
@@ -17,11 +17,7 @@ export default {};
 </script>
 <style lang="less" scoped>
 .home {
-    position: fixed;
-    width: 100%;
-    height: 100%;
     padding-top: 55px;
-    box-sizing: border-box;
     background-image: url("../../assets/image/bg.png");
     background-size: 100% 100%;
     .welcome {

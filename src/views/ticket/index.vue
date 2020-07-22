@@ -3,17 +3,17 @@
         <van-nav-bar title="票夹" fixed />
 
         <div class="content">
-            <ticket-list @view="viewDetail" :list="ticketList" />
+            <ticket-holder @view="viewDetail" :list="TicketHolder" />
         </div>
     </div>
 </template>
 
 <script>
-import TicketList from "components/TicketList";
+import TicketHolder from "./component/TicketHolder";
 export default {
     data() {
         return {
-            ticketList: [
+            TicketHolder: [
                 {
                     id: 1,
                     total: 234.0,
@@ -36,7 +36,7 @@ export default {
         };
     },
     components: {
-        "ticket-list": TicketList
+        "ticket-holder": TicketHolder
     },
     filters: {
         countFilter(val) {

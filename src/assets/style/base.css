@@ -11,6 +11,14 @@ body {
   margin-top: 46px;
 }
 
+.fixed-box {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
 .van-nav-bar {
   background-color: #232a38;
 }
@@ -40,4 +48,11 @@ body {
 
 .van-cell {
   line-height: 30px;
+}
+
+.van-loading {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
 }

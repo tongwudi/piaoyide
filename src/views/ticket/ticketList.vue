@@ -4,57 +4,47 @@
             title="新票夹"
             fixed
             left-arrow
-            :right-text="ischeck? '取消':'选择'"
+            :right-text="isChange ? '取消' : '选择'"
             @click-left="$router.back()"
-            @click-right="ischeck = !ischeck"
+            @click-right="isChange = list ? !isChange : isChange"
         />
 
         <div class="content">
-            <van-row type="flex" justify="space-between" class="ticket-list-top">
+            <van-row class="ticket-list-top" type="flex" justify="space-between">
                 <van-col>
                     <div class="sel-time">
                         <span>2020年7月</span>
-                        <img src="../../assets/image/icon/arrow-down.png" alt />
+                        <img src="../../assets/image/arrow-down.png" alt />
                     </div>
                 </van-col>
                 <van-col>
                     <div class="money">
                         支出：
-                        <span>{{money |currencyFilter }}</span>
+                        <span>{{ money | moneyFilter }}</span>
                     </div>
-                    <div class="total">{{total | totalFilter}}</div>
+                    <div class="total">{{ total | totalFilter }}</div>
                 </van-col>
             </van-row>
 
-            <van-list
-                v-model="loading"
-                :loading-text="loadingText"
-                :finished="finished"
-                :finished-text="finishedText"
-                :error.sync="error"
-                error-text="请求失败，点击重新加载"
-                @load="onLoad"
-                :style="{ marginBottom: ischeck ? '50px' : ''}"
-            >
-                <van-cell
-                    center
-                    title="交通"
-                    label="拍照时间：2020-07-03"
-                    v-for="item in 10"
-                    :key="item"
-                    @click="!ischeck && detail()"
-                >
-                    <template #icon>
-                        <img src="https://img.yzcdn.cn/vant/ipad.jpeg" alt />
-                    </template>
-                    <template #extra>
-                        <span v-if="!ischeck">16.00</span>
-                        <van-checkbox v-else v-model="checked" shape="square"></van-checkbox>
-                    </template>
-                </van-cell>
-            </van-list>
+            <div class="ticket-list" :style="{ marginBottom: isChange ? '50px' : ''}" v-if="list">
+                <div class="ticket-item" v-for="item in list" :key="item" @click="!isChange && detail()">
+                    <van-row type="flex">
+                        <van-checkbox v-if="isChange" v-model="checked" shape="square"></van-checkbox>
+                        <van-image width="90" height="90" src="https://img.yzcdn.cn/vant/cat.jpeg" />
+                        <div class="ticket-item-info">
+                            <van-row type="flex" justify="space-between">
+                                <span class="name">交通</span>
+                                <span class="price">50</span>
+                            </van-row>
+                            <van-divider />
+                            <div class="info-time">拍照时间：2020-07-03</div>
+                        </div>
+                    </van-row>
+                </div>
+            </div>
+            <van-empty v-else description="暂无数据" />
 
-            <van-row class="ticket-list-btn" type="flex" v-if="ischeck">
+            <van-row class="ticket-list-btn" type="flex" v-if="isChange">
                 <van-button
                     block
                     icon="delete"
@@ -78,40 +68,28 @@ export default {
         return {
             money: "376.45",
             total: 15,
-            ischeck: false,
-            list: [],
-            loading: false,
-            finished: false,
-            error: false,
-            loadingText: "加载中...",
-            finishedText: "没有更多了",
+            isChange: false,
+            list: 20,
             checked: false
         };
     },
     filters: {
-        currencyFilter(val) {
+        moneyFilter(val) {
             if (val) return val + "￥";
         },
         totalFilter(val) {
             return "共" + val + "笔";
         }
     },
+    mounted() {
+        this.$loading.show();
+        let timer = setTimeout(() => {
+            this.$loading.hide()
+            clearTimeout(timer);
+        }, 2000);
+    },
     methods: {
-        onLoad() {
-            setTimeout(() => {
-                for (let i = 0; i < 5; i++) {
-                    this.list.push(this.list.length + 1);
-                }
-
-                // 加载状态结束
-                this.loading = false;
-
-                // 数据全部加载完成
-                if (this.list.length >= 15) {
-                    this.finished = true;
-                }
-            }, 1000);
-        },
+        getDataList() {},
 
         detail() {
             this.$router.push({
@@ -162,6 +140,7 @@ export default {
     padding-bottom: 0;
     .ticket-list-top {
         font-size: 14px;
+        margin-bottom: 10px;
         .sel-time {
             line-height: 28px;
             padding: 0 15px;
@@ -184,17 +163,44 @@ export default {
         }
     }
 
-    .van-list {
-        margin-top: 10px;
+    .ticket-item {
+        padding: 15px;
+        margin-bottom: 10px;
+        background-color: #fff;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        &-info {
+            flex: 1;
+            padding: 2px 0;
+            line-height: 30px;
+            .name {
+                font-size: 16px;
+                color: #0e0f16;
+            }
+            .price {
+                font-size: 24px;
+                color: #e63b50;
+                &::after {
+                    content: "￥";
+                    display: inline-block;
+                    font-size: 16px;
+                    line-height: 20px;
+                }
+            }
+            .info-time {
+                font-size: 14px;
+                color: #bdbdbd;
+            }
+        }
     }
-    .van-cell {
-        box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
-        .van-cell__title {
-            margin-left: 10px;
-        }
-        img {
-            height: 80px;
-        }
+    .van-checkbox {
+        margin-right: 10px;
+    }
+    .van-image {
+        flex: none;
+        margin-right: 15px;
+    }
+    .van-divider {
+        margin: 10px 0;
     }
 
     .ticket-list-btn {

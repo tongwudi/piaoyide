@@ -6,7 +6,12 @@
             <van-cell-group>
                 <van-cell center value="出租车发票">
                     <template #icon>
-                        <img src="https://img.yzcdn.cn/vant/ipad.jpeg" alt @click="previewss" />
+                        <van-image
+                            width="75"
+                            height="75"
+                            src="https://img.yzcdn.cn/vant/ipad.jpeg"
+                            @click="previewss"
+                        />
                     </template>
                 </van-cell>
             </van-cell-group>
@@ -223,10 +228,6 @@ export default {
     text-align: right;
     font-size: 16px;
     color: #343b47;
-}
-
-.van-cell img {
-    height: 75px;
 }
 
 /deep/ .van-field__label {

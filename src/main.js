@@ -6,6 +6,7 @@ import 'amfe-flexible';
 import './router/guard'
 import './plugins/vant.js'
 import '@/assets/style/base.css'
+import 'components/index.js'
 
 Vue.config.productionTip = false
 

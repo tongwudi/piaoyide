@@ -2,16 +2,21 @@
     <van-tabbar v-model="active" route fixed>
         <van-tabbar-item replace to="/ticket">
             <template #icon="props">
-                <img :src="props.active ? ticketIcon.active : ticketIcon.inactive" />
+                <img :src="props.active ? ticketIcon.active : ticketIcon.normal" />
             </template>
             <span>票夹</span>
         </van-tabbar-item>
-        <van-tabbar-item replace to="/" class="foot-bar--round">
+        <van-tabbar-item to="/camera" class="foot-bar--round">
             <template #icon>
                 <img :src="shotIcon" />
             </template>
         </van-tabbar-item>
-        <van-tabbar-item replace to="/mine" icon="user-o">我的</van-tabbar-item>
+        <van-tabbar-item replace to="/mine">
+            <template #icon="props">
+                <img :src="props.active ? mineIcon.normal : mineIcon.active" />
+            </template>
+            <span>我的</span>
+        </van-tabbar-item>
     </van-tabbar>
 </template>
 
@@ -23,7 +28,11 @@ export default {
             shotIcon: require("../assets/image/icon/shot.png"),
             ticketIcon: {
                 active: require("../assets/image/icon/ticketActive.png"),
-                inactive: require("../assets/image/icon/ticket.png")
+                normal: require("../assets/image/icon/ticket.png")
+            },
+            mineIcon: {
+                active: require("../assets/image/icon/mine.png"),
+                normal: require("../assets/image/icon/mineActive.png")
             }
         };
     }
