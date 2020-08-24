@@ -207,9 +207,9 @@ export default {
         }
         .currency {
             font-size: 12px;
-            line-height: 15px;
+            line-height: 20px;
             color: #e63b50;
-            margin: 10px 0 5px;
+            margin: 10px 0 0;
         }
     }
 }
